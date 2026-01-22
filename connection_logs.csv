@@ -1,0 +1,11 @@
+Timestamp,IP Address,Endpoint,Method,User Agent
+2026-01-22 14:27:20,127.0.0.1,/api/health,GET,Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.26100.7462
+2026-01-22 14:27:21,127.0.0.1,/api/health,GET,Go-http-client/1.1
+2026-01-22 14:28:24,192.168.2.228,/,GET,"Mozilla/5.0 (iPhone; CPU iPhone OS 18_6_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6 Mobile/15E148 Safari/604.1"
+2026-01-22 14:28:24,192.168.2.228,/css/style.css,GET,"Mozilla/5.0 (iPhone; CPU iPhone OS 18_6_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6 Mobile/15E148 Safari/604.1"
+2026-01-22 14:28:24,192.168.2.228,/assets/cv_comparison.png,GET,"Mozilla/5.0 (iPhone; CPU iPhone OS 18_6_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6 Mobile/15E148 Safari/604.1"
+2026-01-22 14:28:24,192.168.2.228,/js/main.js,GET,"Mozilla/5.0 (iPhone; CPU iPhone OS 18_6_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6 Mobile/15E148 Safari/604.1"
+2026-01-22 14:28:24,192.168.2.228,/api/health,GET,"Mozilla/5.0 (iPhone; CPU iPhone OS 18_6_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6 Mobile/15E148 Safari/604.1"
+2026-01-22 14:28:24,192.168.2.228,/api/model-info,GET,"Mozilla/5.0 (iPhone; CPU iPhone OS 18_6_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6 Mobile/15E148 Safari/604.1"
+2026-01-22 14:28:24,192.168.2.228,/api/performance,GET,"Mozilla/5.0 (iPhone; CPU iPhone OS 18_6_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6 Mobile/15E148 Safari/604.1"
+2026-01-22 14:28:24,192.168.2.228,/favicon.ico,GET,"Mozilla/5.0 (iPhone; CPU iPhone OS 18_6_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6 Mobile/15E148 Safari/604.1"

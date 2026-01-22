@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dự đoán Jartest Nước Sông với Machine Learning - DATA_FPT">
+    <title>Dự Đoán Chất Lượng Nước - AI Model</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">🌊 Dự Đoán Chất Lượng Nước</h1>
+                <p class="subtitle">Jartest Nước Sông - Machine Learning Model</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Info Section -->
+            <section class="info-section">
+                <div class="card">
+                    <h2>📊 Về Model</h2>
+                    <div id="model-info" class="model-info">
+                        <p>Đang tải thông tin model...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Prediction Section -->
+            <section class="prediction-section">
+                <div class="card">
+                    <h2>🎯 Thực Hiện Dự Đoán</h2>
+
+                    <form id="prediction-form" class="prediction-form">
+                        <div class="form-info">
+                            <p>Nhập các giá trị đặc trưng (features) để model dự đoán.</p>
+                            <p class="note">💡 Tất cả các trường phải là số thực (float)</p>
+                        </div>
+
+                        <div id="features-container" class="features-container">
+                            <!-- Features will be dynamically added here -->
+                            <div class="form-group">
+                                <label for="feature1">Nhiệt độ Nước Sông:</label>
+                                <input type="number" step="any" id="feature1" name="feature1" placeholder="VD: 28.5"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="feature2">pH Nước Sông:</label>
+                                <input type="number" step="any" id="feature2" name="feature2" placeholder="VD: 6.5"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="feature3">Độ Đục Nước Sông:</label>
+                                <input type="number" step="any" id="feature3" name="feature3" placeholder="VD: 25"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="feature4">Màu Nước Sông:</label>
+                                <input type="number" step="any" id="feature4" name="feature4" placeholder="VD: 150"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="feature5">SS Sông:</label>
+                                <input type="number" step="any" id="feature5" name="feature5" placeholder="VD: 10"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="feature6">EC Nước Sông:</label>
+                                <input type="number" step="any" id="feature6" name="feature6" placeholder="VD: 58.5"
+                                    required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" id="predict-btn">
+                            <span class="btn-text">Dự Đoán</span>
+                            <span class="loading-spinner" style="display: none;">⏳</span>
+                        </button>
+                    </form>
+
+                    <!-- Result Display -->
+                    <div id="result-container" class="result-container" style="display: none;">
+                        <h3>📈 Kết Quả Dự Đoán</h3>
+                        <div id="prediction-result" class="prediction-result">
+                            <!-- Result will be displayed here -->
+                        </div>
+                    </div>
+
+                    <!-- Performance Visualization Container -->
+                    <div id="performance-container" class="card" style="display: none; margin-top: 2rem;">
+                        <h3>📈 Hiệu Suất Mô Hình</h3>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value" id="metric-r2">--</div>
+                                <div class="metric-label">R² Score (Test)</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value" id="metric-mae">--</div>
+                                <div class="metric-label">MAE</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value" id="metric-rmse">--</div>
+                                <div class="metric-label">RMSE</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value" id="metric-mape">--</div>
+                                <div class="metric-label">MAPE %</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value" id="metric-accuracy">--</div>
+                                <div class="metric-label">Accuracy %</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value" id="metric-model">--</div>
+                                <div class="metric-label">Best Model</div>
+                            </div>
+                        </div>
+
+                        <div class="chart-container">
+                            <h4>So Sánh Cross Validation (5 Folds)</h4>
+                            <img src="assets/cv_comparison.png" alt="Cross Validation Comparison"
+                                class="performance-chart">
+                        </div>
+                    </div>
+
+                    <!-- Error Display -->
+                    <div id="error-container" class="error-container" style="display: none;">
+                        <h3>⚠️ Lỗi</h3>
+                        <div id="error-message" class="error-message">
+                            <!-- Error will be displayed here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- How It Works Section -->
+            <section class="info-section">
+                <div class="card">
+                    <h2>🔍 Cách Hoạt Động</h2>
+                    <div class="how-it-works">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Nhập Dữ Liệu</h3>
+                                <p>Nhập các giá trị đặc trưng (numerical features) vào form</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Xử Lý Dữ Liệu</h3>
+                                <p>Dữ liệu được chuẩn hóa và xử lý missing values (nếu có)</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Dự Đoán</h3>
+                                <p>Model Regression phân tích và đưa ra dự đoán chính xác</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h3>Hiển Thị Kết Quả</h3>
+                                <p>Kết quả được trả về với thông tin chi tiết</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>AI Model Web Integration Platform | FPT AIL303 | 2026</p>
+            <p>Model Type: <span id="footer-model-type">Loading...</span></p>
+        </footer>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
