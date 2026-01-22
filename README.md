@@ -186,7 +186,7 @@ This project is for educational purposes.
 
 ## 👤 Author
 
-FPT AIL303 Student
+Võ Minh Nhật Quang - FPT AIL303 Student
 
 ## 🙏 Acknowledgments
 
