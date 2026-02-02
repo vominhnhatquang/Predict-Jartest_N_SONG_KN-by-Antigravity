@@ -1,199 +1,212 @@
-# AI Model Web Integration Platform
+# Water Quality Prediction - AI Model Web Integration
+
+A complete machine learning project for predicting water quality parameters using regression models, with a responsive web interface and Flask API backend.
 
 ## 📋 Project Overview
 
-This project integrates a regression AI model into a responsive web application with Python backend (Flask) and deployment to a public server.
+This project implements an end-to-end regression model for water quality prediction:
+- **Dataset**: Water quality measurements (pH, temperature, turbidity, etc.)
+- **Model**: Best performing regression model selected from multiple algorithms
+- **Deployment**: Flask API with responsive frontend interface
+- **Data Split**: Train (80%), Validate (10%), Test (10%) with fixed random_state=42
 
-## 🎯 Features
-
-- Regression model for continuous value prediction
-- RESTful API backend with Flask
-- Responsive web interface (mobile-first design)
-- Data preprocessing pipeline (missing value handling, scaling)
-- Model validation and comparison
-
-## 🛠️ Tech Stack
-
-### Backend
-- **Python 3.8+**
-- **Flask** - Web framework
-- **Scikit-learn** - ML library
-- **Pandas & NumPy** - Data manipulation
-- **Joblib** - Model serialization
-
-### Frontend
-- **HTML5** - Structure
-- **CSS3** - Responsive styling
-- **Vanilla JavaScript** - Interactivity
-
-### AI Model
-- Regression models: Linear Regression, Ridge, Lasso, ElasticNet
-- Data preprocessing: Imputation, Scaling
-- Validation: Cross-validation, Hyperparameter tuning
-
-## 📦 Project Structure
+## 🏗️ Project Structure
 
 ```
 First_project/
-├── backend/
-│   ├── app.py                 # Main Flask application
-│   ├── model/
-│   │   ├── model.py          # Model loading & inference
-│   │   ├── trained_model.pkl # Saved model
-│   │   └── scaler.pkl        # Saved scaler
-│   ├── preprocessing/
-│   │   ├── __init__.py
-│   │   ├── imputer.py        # Missing value handling
-│   │   ├── scaler.py         # Feature scaling
-│   │   └── validator.py      # Input validation
-│   ├── config.py             # Configuration
-│   ├── utils.py              # Helper functions
-│   └── requirements.txt      # Python dependencies
-├── data/
-│   ├── raw/                  # Original dataset
-│   ├── processed/            # Preprocessed data
-│   └── train_test/           # Split data
-├── notebooks/
-│   ├── 01_eda.ipynb         # Exploratory Data Analysis
-│   ├── 02_preprocessing.ipynb # Data cleaning
-│   └── 03_model_training.ipynb # Model development
-├── frontend/
-│   ├── index.html            # Main page
+├── train_and_deploy_model.ipynb  # Complete ML pipeline notebook
+├── model/
+│   ├── best_model.pkl             # Trained model + preprocessing objects
+│   └── metrics.json               # Model performance metrics
+├── front_end/                     # Responsive web interface
+│   ├── index.html
 │   ├── css/
-│   │   └── style.css        # Responsive styles
 │   ├── js/
-│   │   └── main.js          # Frontend logic
-│   └── assets/              # Static assets
-├── tests/
-│   ├── test_api.py          # API tests
-│   ├── test_model.py        # Model tests
-│   └── test_preprocessing.py # Preprocessing tests
-├── .gitignore
-└── README.md
+│   └── assets/
+├── data/
+│   ├── raw/                       # Original dataset
+│   ├── train/                     # Training data (80%)
+│   ├── validate/                  # Validation data (10%)
+│   └── test/                      # Test data (10%)
+├── PROJECT_REQUIREMENT.MD         # Detailed project requirements
+├── README.md                      # This file
+├── QUICK_START.md                 # Quick start guide
+└── .gitignore
 ```
 
-## 🚀 Getting Started
+## 🚀 Quick Start
+
+See [QUICK_START.md](QUICK_START.md) for detailed setup and running instructions.
 
 ### Prerequisites
-
-- Python 3.8 or higher
-- pip (Python package manager)
-- Git
+- Python 3.8+
+- Jupyter Notebook
+- Modern web browser
 
 ### Installation
 
-1. Clone the repository
+1. **Clone the repository**:
 ```bash
 git clone <repository-url>
 cd First_project
 ```
 
-2. Create virtual environment
+2. **Create virtual environment** (recommended):
 ```bash
 python -m venv venv
-```
-
-3. Activate virtual environment
-- Windows:
-```bash
-venv\Scripts\activate
-```
-- Mac/Linux:
-```bash
+# Windows
+venv\\Scripts\\activate
+# Linux/Mac
 source venv/bin/activate
 ```
 
-4. Install dependencies
+3. **Install dependencies**:
 ```bash
-pip install -r backend/requirements.txt
+pip install -r requirements.txt
 ```
 
-### Running the Application
+### Running the Project
 
-1. Start the Flask backend
+1. **Run the Jupyter Notebook**:
 ```bash
-cd backend
-python app.py
+jupyter notebook train_and_deploy_model.ipynb
 ```
 
-2. Open the frontend
-- Open `frontend/index.html` in your browser
-- Or serve with a local server
+2. **Execute all cells** to:
+   - Load and preprocess data
+   - Train and validate models
+   - Select best model
+   - Export model files
 
-## 📊 Model Information
+3. **Start Flask server** (run the last cells in notebook):
+   - The server will start on `http://localhost:5000`
 
-- **Model Type:** Regression (Ridge/Lasso/ElasticNet)
-- **Input:** Numerical features (float64)
-- **Output:** Continuous value prediction
-- **Preprocessing:** Missing value imputation, feature scaling
-- **Validation:** k-fold cross-validation, random_state=42
+4. **Open web interface**:
+   - Navigate to `http://localhost:5000` in your browser
+   - Enter water quality parameters
+   - Get predictions!
 
-## 🌐 API Endpoints
+## 📊 Model Performance
 
-### POST /api/predict
-Predict values based on input features
-- **Input:** JSON with feature values
-- **Output:** Prediction result
+The model is trained on 6,430 samples and validated on separate validation (804) and test (804) sets.
 
-### GET /api/health
-Check API health status
+View detailed metrics in:
+- `model/metrics.json` - JSON format
+- Last cells of `train_and_deploy_model.ipynb` - Visual analysis
 
-### GET /api/model-info
-Get model metadata and capabilities
+## 🎯 Features
 
-## 🧪 Testing
+- **Complete ML Pipeline**: Data preprocessing, training, validation, testing
+- **Multiple Models Compared**: Linear, Ridge, Lasso, ElasticNet, Random Forest, Gradient Boosting
+- **Hyperparameter Tuning**: Automatic optimization using GridSearchCV
+- **Responsive Web UI**: Works on desktop, tablet, and mobile
+- **RESTful API**: Flask-based prediction API
+- **Reproducible Results**: Fixed random_state=42 for all random operations
 
-Run tests with pytest:
-```bash
-pytest tests/
+## 📡 API Endpoints
+
+### Health Check
+```
+GET /api/health
+Response: {"status": "healthy", "model_loaded": true}
 ```
 
-## 📱 Responsive Design
+### Model Information
+```
+GET /api/model-info
+Response: {"model_type": "...", "features": [...], "training_date": "..."}
+```
 
-- **Mobile:** 320px - 767px
-- **Tablet:** 768px - 1023px
-- **Desktop:** 1024px+
+### Make Prediction
+```
+POST /api/predict
+Body: {"features": [value1, value2, ...]}
+Response: {"success": true, "data": {"prediction": value}}
+```
 
-## 🔐 Security
+### Model Performance
+```
+GET /api/performance
+Response: {"test_r2": ..., "test_mae": ..., "test_rmse": ...}
+```
 
-- Input validation
-- CORS configuration
-- Environment variables for sensitive data
-- HTTPS in production
+## 🛠️ Technology Stack
 
-## 📈 Performance Goals
+**Backend:**
+- Python 3.8+
+- Flask (Web framework)
+- Scikit-learn (ML models)
+- Pandas, NumPy (Data processing)
+- Joblib (Model serialization)
 
-- API response time < 3 seconds
-- Page load time < 2 seconds
-- Lighthouse score > 80
+**Frontend:**
+- HTML5
+- CSS3 (Responsive design)
+- JavaScript (Vanilla JS)
+- Fetch API (Backend communication)
 
-## 📝 Documentation
+**ML Pipeline:**
+- Data imputation (SimpleImputer)
+- Feature scaling (StandardScaler)
+- Cross-validation (5-fold)
+- Hyperparameter tuning (GridSearchCV)
 
-- [Project Requirements](PROJECT_REQUIREMENTS.md)
-- [Activity Log](activity.md)
-- [Error Log](error_log.md)
+## 📝 Data Information
+
+- **Source**: `data/raw/DATA_FPT.csv`
+- **Features**: 6 water quality parameters
+  - NhietdoN_SONG (Temperature)
+  - pH_N_SONG (pH level)
+  - Duc_N_SONG (Turbidity)
+  - Mau_N_SONG (Color)
+  - SS_SONG (Suspended Solids)
+  - EC_N_SONG (Electrical Conductivity)
+- **Target**: Jartest_N_SONG_KN (Coagulant dosage)
+- **Total Samples**: 8,038
+- **Data Split**: 80/10/10 (train/validate/test)
+
+## 🔍 Model Development Process
+
+1. **Data Loading**: Load pre-split train/validate/test data
+2. **Preprocessing**:
+   - Handle missing values (mean imputation)
+   - Feature scaling (standardization)
+3. **Model Training**:
+   - Train 6 different regression models
+   - 5-fold cross-validation on training set
+4. **Model Selection**:
+   - Evaluate on validation set
+   - Select best performing model
+5. **Hyperparameter Tuning**:
+   - GridSearchCV for optimal parameters
+6. **Final Evaluation**:
+   - Test on held-out test set
+   - Generate comprehensive metrics and visualizations
+7. **Export**:
+   - Save model, scaler, imputer in single file
+   - Save metrics as JSON
+
+## 📖 Documentation
+
+- **PROJECT_REQUIREMENT.MD**: Detailed project requirements and specifications
+- **QUICK_START.md**: Quick start guide for new users
+- **train_and_deploy_model.ipynb**: Complete pipeline with inline documentation
 
 ## 🤝 Contributing
 
-1. Follow Python PEP 8 style guide
-2. Write tests for new features
-3. Update documentation
-4. Use meaningful commit messages
+This is an academic project. For questions or suggestions, please contact the project maintainer.
 
 ## 📄 License
 
-This project is for educational purposes.
+This project is created for educational purposes.
 
-## 👤 Author
+## 🔗 Related Files
 
-FPT AIL303 Student
-
-## 🙏 Acknowledgments
-
-- Scikit-learn documentation
-- Flask documentation
-- Project requirements and guidelines
+- Detailed requirements: [PROJECT_REQUIREMENT.MD](PROJECT_REQUIREMENT.MD)
+- Quick start guide: [QUICK_START.md](QUICK_START.md)
+- Main notebook: [train_and_deploy_model.ipynb](train_and_deploy_model.ipynb)
 
 ---
 
-*Last Updated: 2026-01-21*
+**Last Updated**: 2026-01-31
+**Version**: 2.0 (Restructured)

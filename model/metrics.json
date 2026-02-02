@@ -1,0 +1,26 @@
+{
+  "model_name": "Random Forest",
+  "training_date": "2026-01-31 19:34:52",
+  "test_metrics": {
+    "r2_score": 0.6206208911159226,
+    "mae": 2.021446833865444,
+    "rmse": 2.7132965452971045,
+    "mape": 11.29360853357233,
+    "accuracy": 88.70639146642768
+  },
+  "data_split": {
+    "train_samples": 6429,
+    "validate_samples": 804,
+    "test_samples": 804,
+    "random_state": 42
+  },
+  "features": [
+    "NhietdoN_SONG",
+    "pH_N_SONG",
+    "Duc_N_SONG",
+    "Mau_N_SONG",
+    "SS_SONG",
+    "EC_N_SONG"
+  ],
+  "target": "Jartest_N_SONG_KN"
+}
